@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/example_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MediaRecorder"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp" />
+    <Button
+        android:id="@+id/example_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CUSTOM ONE"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"/>
+    <Button
+        android:id="@+id/example_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FFmpegVideoRecorder"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"/>
+    <Button
+        android:id="@+id/example_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CameraKitView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"/>
+    <Button
+        android:id="@+id/example_five"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Two"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"/>
+    <Button
+        android:id="@+id/example_six"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MediaRecorder"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"
+        android:visibility="gone"/>
+
+</LinearLayout>
