@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Custom_Two.class));
                 break;
             case R.id.example_six:
+                startActivity(new Intent(this, Compression.class));
                 break;
         }
     }

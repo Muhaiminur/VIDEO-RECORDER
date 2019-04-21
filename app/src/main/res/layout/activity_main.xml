@@ -46,9 +46,8 @@
         android:id="@+id/example_six"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MediaRecorder"
+        android:text="ONLY COMPRESSION"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:visibility="gone"/>
+        android:textSize="22sp"/>
 
 </LinearLayout>
