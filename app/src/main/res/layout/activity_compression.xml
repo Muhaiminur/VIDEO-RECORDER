@@ -4,21 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Compression"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Compression">
+
     <Button
         android:id="@+id/example_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ONLY COMPRESSION"
+        android:text="COMPRESSION ONE"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp"/>
+        android:textSize="22sp" />
+
     <Button
         android:id="@+id/example_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ONLY COMPRESSION"
+        android:text="COMPRESSION TWO"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp"/>
+        android:textSize="22sp" />
 
+    <Button
+        android:id="@+id/example_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPRESSION THREE"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/example_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPRESSION FOUR"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp" />
 </LinearLayout>

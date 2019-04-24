@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     String compare_source;
     String compare_destination;
     File source_file;
+    @BindView(R.id.example_seven)
+    Button exampleSeven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         permissionManager.checkResult(requestCode, permissions, grantResults);
     }
 
-    @OnClick({R.id.example_one, R.id.example_two, R.id.example_three, R.id.example_four,R.id.example_five, R.id.example_six})
+    @OnClick({R.id.example_one, R.id.example_two, R.id.example_three, R.id.example_four, R.id.example_five, R.id.example_six, R.id.example_seven})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.example_one:
@@ -101,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.example_six:
                 startActivity(new Intent(this, Compression.class));
                 break;
+            case R.id.example_seven:
+                startActivity(new Intent(this, Custom_Three.class));
+                break;
         }
     }
 
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         Context mContext;
 
-        public VideoCompressAsyncTask(Context context){
+        public VideoCompressAsyncTask(Context context) {
             mContext = context;
         }
 
@@ -126,16 +129,16 @@ public class MainActivity extends AppCompatActivity {
             String filePath = null;
             try {
                 //Log.d("Source Path 1", FileProvider.getUriForFile(MainActivity.this,"com.muhaiminur.videorecorder.provider",source_file).toString());
-                Log.d("Destination Path",compare_destination);
+                Log.d("Destination Path", compare_destination);
 
-                Log.d("Destination Path",paths[0]+" skn "+paths[1]);
+                Log.d("Destination Path", paths[0] + " skn " + paths[1]);
                 filePath = SiliCompressor.with(MainActivity.this).compressVideo(compare_source, compare_destination);
                 //filePath = SiliCompressor.with(mContext).compressVideo(FileProvider.getUriForFile(getApplicationContext(),"com.muhaiminur.videorecorder.provider",source_file).toString(), compare_destination);
-                Log.d("VIDEOCAPTURE","Filepath"+filePath);
+                Log.d("VIDEOCAPTURE", "Filepath" + filePath);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return  filePath;
+            return filePath;
 
         }
 
@@ -146,15 +149,15 @@ public class MainActivity extends AppCompatActivity {
             File imageFile = new File(compressedFilePath);
             float length = imageFile.length() / 1024f; // Size in KB
             String value;
-            if(length >= 1024)
-                value = length/1024f+" MB";
+            if (length >= 1024)
+                value = length / 1024f + " MB";
             else
-                value = length+" KB";
+                value = length + " KB";
             String text = String.format(Locale.US, "%s\nName: %s\nSize: %s", "Complete", imageFile.getName(), value);
             /*compressionMsg.setVisibility(View.GONE);
             picDescription.setVisibility(View.VISIBLE);
             picDescription.setText(text);*/
-            Log.i("Silicompressor", "Path: "+compressedFilePath);
+            Log.i("Silicompressor", "Path: " + compressedFilePath);
         }
     }
 }

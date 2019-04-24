@@ -89,6 +89,7 @@ public class FFmpegVideoRecorder extends AppCompatActivity {
         intent.putExtra(FFmpegRecorderActivity.REQUEST_PARAMS_KEY, paramsBuilder.build());
         startActivityForResult(intent, RECORD_VIDEO_REQUEST);
     }
+
     private void createTempFiles() {
         if (mVideoFile != null && mThumbnailFile != null) {
             return;
@@ -115,6 +116,7 @@ public class FFmpegVideoRecorder extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -128,10 +130,10 @@ public class FFmpegVideoRecorder extends AppCompatActivity {
                                 new File(videoUri.getPath()), new File(thumbnailUri.getPath())));
                         mVideoFile = null;
                         mThumbnailFile = null;
-                        Log.d("Record","OK");
+                        Log.d("Record", "OK");
                         break;
                     case Activity.RESULT_CANCELED:
-                        Log.d("Record","CANCEL");
+                        Log.d("Record", "CANCEL");
                         break;
                     case FFmpegRecorderActivity.RESULT_ERROR:
                         Exception error = (Exception)
@@ -142,7 +144,7 @@ public class FFmpegVideoRecorder extends AppCompatActivity {
                                 .setMessage(error.getLocalizedMessage())
                                 .setPositiveButton("ok", null)
                                 .show();
-                        Log.d("Error",error.getLocalizedMessage());
+                        Log.d("Error", error.getLocalizedMessage());
                         break;
                 }
                 break;
@@ -151,6 +153,7 @@ public class FFmpegVideoRecorder extends AppCompatActivity {
                 break;
         }
     }
+
     public interface OnVideoRecorderListener {
         void onVideoRecorded(VideoFile videoFile);
     }

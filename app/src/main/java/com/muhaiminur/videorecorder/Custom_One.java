@@ -1,4 +1,5 @@
 package com.muhaiminur.videorecorder;
+
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
@@ -15,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
@@ -43,6 +45,7 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
     boolean previewRunning = false;
 
     String video_source;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,7 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
         camcorderProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
         setContentView(R.layout.activity_custom__one);
         ButterKnife.bind(this);
-        SurfaceView cameraView =findViewById(R.id.CameraView);
+        SurfaceView cameraView = findViewById(R.id.CameraView);
         holder = cameraView.getHolder();
         holder.addCallback(this);
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -87,7 +90,7 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
             try {
                 File newFile = File.createTempFile("videocapture", ".3gp", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
                 recorder.setOutputFile(newFile.getAbsolutePath());
-                video_source=newFile.getAbsolutePath();
+                video_source = newFile.getAbsolutePath();
             } catch (IOException e) {
                 Log.v(LOGTAG, "Couldn't create file");
                 e.printStackTrace();
@@ -97,7 +100,7 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
             try {
                 File newFile = File.createTempFile("videocapture", ".mp4", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
                 recorder.setOutputFile(newFile.getAbsolutePath());
-                video_source=newFile.getAbsolutePath();
+                video_source = newFile.getAbsolutePath();
             } catch (IOException e) {
                 Log.v(LOGTAG, "Couldn't create file");
                 e.printStackTrace();
@@ -107,7 +110,7 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
             try {
                 File newFile = File.createTempFile("videocapture", ".mp4", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
                 recorder.setOutputFile(newFile.getAbsolutePath());
-                video_source=newFile.getAbsolutePath();
+                video_source = newFile.getAbsolutePath();
             } catch (IOException e) {
                 Log.v(LOGTAG, "Couldn't create file");
                 e.printStackTrace();
@@ -225,8 +228,8 @@ public class Custom_One extends AppCompatActivity implements View.OnClickListene
         if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
             Log.d("VIDEOCAPTURE", "Maximum Duration Reached");
             Toast.makeText(this, "Maximum Duration Reached", Toast.LENGTH_SHORT).show();
-            if (video_source!=null){
-                Log.d("Result",video_source);
+            if (video_source != null) {
+                Log.d("Result", video_source);
             }
             finish();
         }

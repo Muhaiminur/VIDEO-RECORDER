@@ -195,6 +195,7 @@ public class Custom_Two extends AppCompatActivity {
 
                 takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 15);
                 takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+                takeVideoIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,/*5242880L*/30 * 1048576L);
                 capturedUri = FileProvider.getUriForFile(this,
                         FILE_PROVIDER_AUTHORITY,
                         createMediaFile(TYPE_VIDEO));
