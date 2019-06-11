@@ -32,6 +32,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.jmolsmobile.landscapevideocapture.VideoCaptureActivity"
+            android:screenOrientation="sensor" >
+        </activity>
+
         <provider
             android:name=".provider.GenericFileProvider"
             android:authorities="com.muhaiminur.videorecorder.provider"

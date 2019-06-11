@@ -1,15 +1,20 @@
 package com.muhaiminur.videorecorder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.iceteck.silicompressorr.SiliCompressor;
+import com.jmolsmobile.landscapevideocapture.VideoCaptureActivity;
+import com.jmolsmobile.landscapevideocapture.configuration.CaptureConfiguration;
+import com.jmolsmobile.landscapevideocapture.configuration.PredefinedCaptureConfigurations;
 import com.karan.churi.PermissionManager.PermissionManager;
 
 import java.io.File;
@@ -102,7 +107,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Compression.class));
                 break;
             case R.id.example_seven:
-                startActivity(new Intent(this, Custom_Three.class));
+                //startActivity(new Intent(this, Custom_Three.class));
+
+                final CaptureConfiguration config = createCaptureConfiguration();
+                final String filename = "ABir_seven.mp4";
+                final Intent intent = new Intent(MainActivity.this, VideoCaptureActivity.class);
+                intent.putExtra(VideoCaptureActivity.EXTRA_CAPTURE_CONFIGURATION, config);
+                intent.putExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME, filename);
+                //intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
+                //intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,200000);
+                //intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,10000);
+                startActivityForResult(intent, 101);
                 break;
         }
     }
@@ -159,5 +174,59 @@ public class MainActivity extends AppCompatActivity {
             picDescription.setText(text);*/
             Log.i("Silicompressor", "Path: " + compressedFilePath);
         }
+    }
+
+    private CaptureConfiguration createCaptureConfiguration() {
+        final PredefinedCaptureConfigurations.CaptureResolution resolution = PredefinedCaptureConfigurations.CaptureResolution.RES_480P;
+        final PredefinedCaptureConfigurations.CaptureQuality quality = PredefinedCaptureConfigurations.CaptureQuality.LOW;
+
+        CaptureConfiguration.Builder builder = new CaptureConfiguration.Builder(resolution, quality);
+
+        try {
+            int maxDuration = Integer.valueOf("10");
+            builder.maxDuration(maxDuration);
+        } catch (final Exception e) {
+            //NOP
+        }
+        try {
+            int maxFileSize = Integer.valueOf("2000000");
+            builder.maxFileSize(maxFileSize);
+        } catch (final Exception e) {
+            //NOP
+        }
+        /*try {
+            int fps = Integer.valueOf(fpsEt.getEditableText().toString());
+            builder.frameRate(fps);
+        } catch (final Exception e) {
+            //NOP
+        }*/
+        if (/*showTimerCb.isChecked()*/true) {
+            builder.showRecordingTime();
+        }
+        if (/*!allowFrontCameraCb.isChecked()*/false) {
+            builder.noCameraToggle();
+        }
+
+        return builder.build();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        String filename;
+        String statusMessage;
+        if (resultCode == Activity.RESULT_OK) {
+            filename = data.getStringExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME);
+            Log.d("File Name",filename);
+            statusMessage = String.format("Abir Success", filename);
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            filename = null;
+            statusMessage = "ABir Cancel";
+        } else if (resultCode == VideoCaptureActivity.RESULT_ERROR) {
+            filename = null;
+            statusMessage = "ABir Fail";
+        }
+        //updateStatusAndThumbnail();
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
